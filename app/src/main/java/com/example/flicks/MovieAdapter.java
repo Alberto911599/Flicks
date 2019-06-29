@@ -132,9 +132,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 // get the movie at the position, this wont work if the class is static
                 Movie movie = movies.get(position);
                 // create intent for the new activity
+                String imageUrl = config.getImageUrl(config.getBackdropSize(), movie.getBackdropPath());
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 // Serialize the movie using parceler, use its short name as a key
                 intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                intent.putExtra("backdropImagePath", imageUrl);
                 // show the activity
                 context.startActivity(intent);
             }
